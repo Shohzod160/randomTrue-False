@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рандомный выбор True/False</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+        .pulse {
+            animation: pulse 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-900 via-indigo-800 to-blue-900 min-h-screen flex items-center justify-center">
+    <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl text-center max-w-md w-full">
+        <h1 class="text-3xl font-bold text-white mb-6">True или False?</h1>
+        <div id="result" class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500 mb-8">
+            Нажми кнопку!
+        </div>
+        <button id="generateBtn" class="bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold py-3 px-6 rounded-full hover:from-green-500 hover:to-blue-600 transition duration-300 transform hover:scale-105">
+            Сгенерировать
+        </button>
+        <div class="mt-6 flex justify-center">
+            <div id="loader" class="hidden w-12 h-12 border-4 border-t-transparent border-white rounded-full spin"></div>
+        </div>
+    </div>
+
+    <script>
+        const generateBtn = document.getElementById('generateBtn');
+        const resultDiv = document.getElementById('result');
+        const loader = document.getElementById('loader');
+
+        generateBtn.addEventListener('click', () => {
+            // Показать анимацию загрузки
+            loader.classList.remove('hidden');
+            resultDiv.classList.add('pulse');
+            resultDiv.textContent = 'Генерируем...';
+
+            // Задержка для анимации
+            setTimeout(() => {
+                // Случайный выбор True/False
+                const result = Math.random() > 0.5 ? 'True' : 'False';
+                resultDiv.textContent = result;
+
+                // Изменение цвета в зависимости от результата
+                resultDiv.classList.remove('pulse');
+                resultDiv.classList.remove('bg-gradient-to-r', 'from-pink-500', 'to-yellow-500');
+                resultDiv.classList.add(result === 'True' ? 'bg-gradient-to-r' : 'bg-gradient-to-r');
+                resultDiv.classList.add(result === 'True' ? 'from-green-400' : 'from-red-400');
+                resultDiv.classList.add(result === 'True' ? 'to-green-600' : 'to-red-600');
+
+                // Скрыть анимацию загрузки
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
