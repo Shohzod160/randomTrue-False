@@ -1,0 +1,125 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background: #1e1e1e;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 3rem;
+    color: #bb86fc;
+}
+
+.flipper {
+    perspective: 1000px;
+    margin: 30px 0;
+}
+
+.card {
+    width: 200px;
+    height: 120px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.front {
+    background: #373737;
+}
+
+.back {
+    background: #03dac6;
+    color: #121212;
+    transform: rotateY(180deg);
+}
+
+.back.true {
+    background: #03dac6; /* Зеленоватый */
+}
+
+.back.false {
+    background: #cf6679; /* Розоватый */
+}
+
+
+#generateBtn {
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#generateBtn:hover {
+    background-color: #a16ae8;
+    transform: scale(1.05);
+}
+
+#generateBtn:active {
+    transform: scale(0.95);
+}
+
+.history {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.history h2 {
+    color: #bb86fc;
+}
+
+#historyList {
+    list-style: none;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#historyList li {
+    background: #2c2c2c;
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+#historyList li.true {
+    border-left: 4px solid #03dac6;
+}
+
+#historyList li.false {
+    border-left: 4px solid #cf6679;
+}
